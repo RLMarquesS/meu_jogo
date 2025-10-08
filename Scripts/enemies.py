@@ -29,5 +29,20 @@ class Ememies():
         self.rect.topleft = (self.x, self.y)
 
 
+    def evitar_sobreposicao(self, outro):
+        if self.rect.colliderect(outro.rect):
+            if self.x < outro.x:
+                self.x -= 2
+            elif self.y < outro.y:
+                self.y -= 2
+            
+            if self.x > outro.x:
+                self.x += 2
+            elif self.y > outro.y:
+                self.y += 2
+
+            self.rect.topleft = (self.x, self.y)
+
+
     def criar_inimigo(self, tela):
         pygame.draw.rect(tela, COLORS['RED'], self.rect)

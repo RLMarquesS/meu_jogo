@@ -61,6 +61,10 @@ class Game:
         for inimigo in self.enemies:
             inimigo.update((self.player.x, self.player.y))
 
+        #Verifica se há sobreposição de inimigos:
+        self.evitar_sobreposicao_inimigos()
+
+
     def criar_inimigos(self, quantidade):
         inimigos = []
         for _ in range(quantidade):
@@ -75,6 +79,12 @@ class Game:
                     inimigos.append(inimigo)
                     break
         return inimigos
+    
+    def evitar_sobreposicao_inimigos(self):
+        for i, inimigo in enumerate(self.enemies):
+            for outro in self.enemies[i+1:]:
+                inimigo.evitar_sobreposicao(outro)
+
 
 
 
