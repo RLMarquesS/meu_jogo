@@ -64,11 +64,16 @@ class Game:
     def criar_inimigos(self, quantidade):
         inimigos = []
         for _ in range(quantidade):
-            x = randint(0,800) #posisão na tela
-            y = randint(0,800) #posisão na tela
+            while True:
+                x = randint(0,SCREEN_WIDTH - 40) #posisão na tela
+                y = randint(0,SCREEN_HEIGTH - 50) #posisão na tela
 
-            inimigo = Ememies(x, y, self.tela)
-            inimigos.append(inimigo)
+                inimigo = Ememies(x, y, self.tela)
+                
+
+                if not any(inimigo.rect.colliderect(i.rect) for i in inimigos):
+                    inimigos.append(inimigo)
+                    break
         return inimigos
 
 

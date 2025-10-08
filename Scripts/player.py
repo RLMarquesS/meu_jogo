@@ -15,13 +15,13 @@ class Player():
 
     def move_player(self, comando):
 
-        if comando[pygame.K_LEFT]:
+        if comando[pygame.K_LEFT] or comando[pygame.K_a]:
             self.x -= self.speed
-        if comando[pygame.K_RIGHT]:
+        if comando[pygame.K_RIGHT] or comando[pygame.K_d]:
             self.x += self.speed
-        if comando[pygame.K_UP]:
+        if comando[pygame.K_UP] or comando[pygame.K_w]:
             self.y -= self.speed
-        if comando[pygame.K_DOWN]:
+        if comando[pygame.K_DOWN] or comando[pygame.K_s]:
             self.y += self.speed
         
         self.rect.topleft = (self.x, self.y)
