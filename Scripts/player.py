@@ -27,5 +27,5 @@ class Player():
         self.rect.topleft = (self.x, self.y)
 
     def criar_player(self, tela):
+        
         pygame.draw.rect(tela,COLORS['WHITE'], self.rect)
-
