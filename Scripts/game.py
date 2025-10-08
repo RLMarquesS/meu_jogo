@@ -57,12 +57,13 @@ class Game:
         #Atualiza a tela 
         self.tela.fill(COLORS['BLACK'])
 
-        #criando inimigos:
+        #Bloco INIMIGO 
+            #criando inimigos:
         for inimigo in self.enemies:
             inimigo.update((self.player.x, self.player.y))
-
-        #Verifica se há sobreposição de inimigos:
+            #Verifica se há sobreposição de inimigos:
         self.evitar_sobreposicao_inimigos()
+
 
 
     def criar_inimigos(self, quantidade):
@@ -100,4 +101,6 @@ class Game:
         fonte = pygame.font.Font(None, tamanho)
         superficie_texto = fonte.render(f"Pontos : {texto}", True, cor)
         self.tela.blit(superficie_texto, (x, y))
+
+
 
