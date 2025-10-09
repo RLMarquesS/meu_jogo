@@ -18,10 +18,13 @@ Não está funcionando a limitação de telas exemplo: a posição x y do player
 Não está funcionando !!!
 
 ## Criação de TIME
-Time de até 1 minuto para verificar a velocidade
+Para saber em quanto tempo a pessoa demora para chegar aos 100. 
+Ao final do tempo aparecer uma tela mostrando a pontuação / tempo / reiniciar
 
 ### Criar um SAVE
 Estudar uma maneira que de criar um SAVE
+
+
 
 
 ## BUGs
