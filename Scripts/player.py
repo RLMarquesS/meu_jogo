@@ -23,6 +23,7 @@ class Player():
             self.y -= self.speed
         if comando[pygame.K_DOWN] or comando[pygame.K_s]:
             self.y += self.speed
+
         
         self.rect.topleft = (self.x, self.y)
 

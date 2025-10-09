@@ -14,3 +14,5 @@ Nas Setas
 Vai aparecer de 5 e 5 inimigos e ao passar o player nele você ganha 1 ponto
 
 # Sprites
+Ainda a definir
+

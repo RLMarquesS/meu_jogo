@@ -14,6 +14,10 @@ class Game:
         self.running = True
         self.pontuacao = 0
 
+        # Cronometro:
+        self.tempo = 0
+        
+
         
         #Cria o player:
         self.player = Player(x=100, y=100, tela= self.tela)
@@ -25,6 +29,7 @@ class Game:
         #Função para deixar o jogo "rodando"
         while self.running:
             self.clock.tick(FPS)
+            self.tempo += self.clock.get_time()
             self.handless_events()
             self.update()
             self.fisica()
@@ -32,12 +37,14 @@ class Game:
             for inimigo in self.enemies:
                 inimigo.criar_inimigo(self.tela)
 
-            self.mostrar_pontuacao(self.pontuacao, 36, COLORS['GREEN'],20,20)
+            self.mostrar_pontuacao(self.pontuacao, self.tempo, 36, COLORS['GREEN'],20,20)
             if not self.enemies:
                 self.enemies = self.criar_inimigos(5)
-
-
             pygame.display.flip()
+
+            if self.pontuacao == 100:
+                print(f"Pontos : {self.pontuacao} | Tempo: {self.tempo / 1000:.2f} seg")
+                break
 
 
     def handless_events(self):
@@ -47,7 +54,6 @@ class Game:
 
         comando = pygame.key.get_pressed()
         self.player.move_player(comando)
-
 
 
     def update(self):
@@ -65,7 +71,6 @@ class Game:
         self.evitar_sobreposicao_inimigos()
 
 
-
     def criar_inimigos(self, quantidade):
         inimigos = []
         for _ in range(quantidade):
@@ -75,7 +80,6 @@ class Game:
 
                 inimigo = Ememies(x, y, self.tela)
                 
-
                 if not any(inimigo.rect.colliderect(i.rect) for i in inimigos):
                     inimigos.append(inimigo)
                     break
@@ -86,9 +90,6 @@ class Game:
             for outro in self.enemies[i+1:]:
                 inimigo.evitar_sobreposicao(outro)
 
-
-
-
     def fisica(self):
         for inimigo in self.enemies[:]:
             if self.player.rect.colliderect(inimigo.rect):
@@ -96,10 +97,9 @@ class Game:
                 self.enemies.remove(inimigo)
 
     
-
-    def mostrar_pontuacao(self, texto, tamanho, cor, x, y):
+    def mostrar_pontuacao(self, pontos, tempo,tamanho, cor, x, y):
         fonte = pygame.font.Font(None, tamanho)
-        superficie_texto = fonte.render(f"Pontos : {texto}", True, cor)
+        superficie_texto = fonte.render(f"Pontos : {pontos} | Tempo: {tempo / 1000:.2f} seg", True, cor)
         self.tela.blit(superficie_texto, (x, y))
 
 
